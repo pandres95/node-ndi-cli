@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ES2021",
+        "module": "ES2022",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "importsNotUsedAsValues": "remove",
+    }
+}
