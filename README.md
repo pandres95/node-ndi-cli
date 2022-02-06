@@ -21,10 +21,14 @@ To see the options, run:
 Sends a random video/audio source:
 
 ```
-./ndi.ts random
+ndi.js random [options] [timeout]
 ```
 
-| Option       | Description                 | Default |
+Where `timeout` is the amount of time it encodes the signal before closing.
+
+#### Options
+
+| Name.        | Description                 | Default |
 | :----------- | :-------------------------- | :------ |
 | `video`      | Send video signal           | `true`  |
 | `width`      | Width of video signal       | 1920    |
@@ -39,6 +43,7 @@ Sends a random video/audio source:
 Sends a V4L2 only-video source
 
 ```
-./ndi.ts v4l2 /dev/videoN
+ndi.js v4l2 <path>
 ```
 
+Where `path` is the path to the video source (i.e. `/dev/videoN`).
