@@ -17,6 +17,7 @@ async function main() {
       action: (sendInstance: SendInstance, options: any, ...args: any[]) => void
     ) =>
     (...args: any[]) => {
+      const start = Date.now();
       
       const options = args.find(arg => typeof arg === 'object');
       const command = args.find(arg => typeof arg === 'object' && arg.constructor === Command);
@@ -30,6 +31,7 @@ async function main() {
         ...(!options.video ? { clockAudio: true, clockVideo: false } : {}),
       });
 
+      console.log(`NDI initialized in ${((Date.now() - start)/ 1000).toFixed(3)}ms`);
       action(sendInstance, options, ...commandArgs);
     };
 
