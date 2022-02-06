@@ -6,6 +6,7 @@ import { SendInstance } from "ndi.js";
 import fileSignalTest from "./sources/file";
 import randomSignalTest from "./sources/random";
 import uvcSignalTest from "./sources/uvc";
+import v4l2SignalTest from "./sources/v4l2";
 import webcamSignalTest from "./sources/webcam";
 
 const { createCommand, program } = commander;
@@ -59,6 +60,13 @@ async function main() {
       createCommand("uvc")
         .action(processAction(uvcSignalTest))
         .description("Sends a UVC device stream")
+        .option("-A, --no-audio", "Disable audio")
+    )
+    .addCommand(
+      createCommand("v4l2")
+        .action(processAction(v4l2SignalTest))
+        .description("Sends a v4l2 device stream")
+        .argument('<path>', 'The path to the video device')
         .option("-A, --no-audio", "Disable audio")
     )
     .addCommand(

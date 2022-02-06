@@ -1,11 +1,17 @@
 {
     "configurations": [
         {
-            "name": "Launch Test CLI",
+            "name": "Test CLI: Random",
             "type": "pwa-node",
             "request": "launch",
-            "runtimeExecutable": "${workspaceFolder}/ndi.ts",
             "runtimeArgs": [
+                "--loader",
+                "ts-node/esm",
+                "--experimental-modules",
+                "--es-module-specifier-resolution=node"
+            ],
+            "program": "${workspaceFolder}/ndi.ts",
+            "args": [
                 "random",
                 "-f",
                 "${input:frames}",
@@ -17,6 +23,25 @@
                 "${input:audio}",
                 "${input:video}",
             ],
+        },
+        {
+            "name": "Test CLI: V4L2",
+            "type": "pwa-node",
+            "request": "launch",
+            "runtimeExecutable": "node",
+            "runtimeArgs": [
+                "--loader",
+                "ts-node/esm",
+                "--experimental-modules",
+                "--es-module-specifier-resolution=node"
+            ],
+            "program": "${workspaceFolder}/ndi.ts",
+            "args": [
+                "v4l2",
+                "${input:path}",
+            ],
+            "console": "integratedTerminal",
+            "sudo": true
         },
     ],
     "inputs": [
@@ -57,6 +82,12 @@
             "description": "Select your video choice",
             "default": "--video",
             "options": ["--video", "--no-video"]
+        },
+        {
+            "id": "path",
+            "type": "promptString",
+            "description": "Select your source path",
+            "default": "/dev/video0"
         },
     ]
 }
